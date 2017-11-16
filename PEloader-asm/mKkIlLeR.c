@@ -61,6 +61,7 @@ typedef struct {
 
 int main(int argc, char* argv[])
 {
+	
 	unsigned int Baseaddr = 0;
 	unsigned int Vaddr = 0;
 	unsigned int Oaddr = 0;
@@ -68,8 +69,9 @@ int main(int argc, char* argv[])
 	FILE* SFile=NULL;
 	errno_t err;
 
-	WCHAR *targetfilename = L"target.exe";
-	WCHAR *DFileName =		L"testPE.dll";
+	WCHAR *targetfilename = L"..\\target\\target.exe";
+	WCHAR *DFileName =		L"..\\TLStest\\TLStest.dll";
+	//WCHAR *DFileName =		L"testdll.dll";
 	WCHAR *szXFile =		L"Xtarget.exe";
 
 	

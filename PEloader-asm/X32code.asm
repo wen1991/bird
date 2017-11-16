@@ -200,14 +200,15 @@ CopySections:
 			sub dx,1
 			mov ecx,[ebx+10H]					;DWORD SizeOfRawData
 			test ecx,ecx
-			jz 	CopySections
+			jz 	NextSections
 			mov edi,[ebx+0CH]					;DWORD VirtualAddress
 			test edi,edi
-			jz 	CopySections
+			jz 	NextSections
 			add edi,eax
 			mov esi,[ebx+14H]					;DWORD PointerToRawData
 			ADD esi,[ebp-1CH]					;lpFileData
 			REP MOVSB
+NextSections:
 			add ebx,28H							;next pSectionHeader
 			TEST EDX,EDX
 			JNZ CopySections
@@ -238,12 +239,13 @@ F3:
 			mov dx,word ptr [edi]
 			and dx,0F000H
 			cmp dx,3000H
-			jnz F3
+			jnz NextBlock
 			mov dx,word ptr [edi]
 			and dx,0FFFH
 			add edx,[ebx]						;DWORD VirtualAddress
 			add edx,[ebp-04H]					;pImageBase
 			add [edx],esi
+NextBlock:
 			add edi,2
 			sub eax,2
 			test eax,eax						;NumberOfBlocks
